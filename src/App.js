@@ -22,7 +22,10 @@ function App() {
     <div className="App mw8 center mv3 ph3 sans-serif">
       <h1 className="pa2 bg-orange white">COVID-19 Data Explorer</h1>
       {selectedCountry ? (
-        <CountryData country={selectedCountry} />
+        <CountryData
+          country={selectedCountry}
+          handleGoBack={() => setSelectedCountry(null)}
+        />
       ) : (
         <CountryList
           countries={countries}

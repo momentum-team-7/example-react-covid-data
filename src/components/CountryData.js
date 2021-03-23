@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import format from 'date-fns/format'
 
-export default function CountryData({ country }) {
+export default function CountryData({ country, handleGoBack }) {
   const [countryData, setCountryData] = useState([])
 
   useEffect(() => {
@@ -23,7 +23,17 @@ export default function CountryData({ country }) {
 
   return (
     <div>
-      <h2>{country.Country}</h2>
+      <h2>
+        {country.Country}
+        <div className="dib ml2 f5">
+          <button
+            className="pa0 bw0 bg-white blue pointer underline-hover"
+            onClick={handleGoBack}
+          >
+            Back to all countries
+          </button>
+        </div>
+      </h2>
 
       <ul>
         {countryData.map((dataByDay) => (
