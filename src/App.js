@@ -6,6 +6,7 @@ import CountryList from './components/CountryList'
 
 function App() {
   const [countries, setCountries] = useState([])
+  const [selectedCountry, setSelectedCountry] = useState(null)
 
   useEffect(() => {
     axios.get('https://api.covid19api.com/countries').then((response) => {
@@ -19,7 +20,10 @@ function App() {
   return (
     <div className="App mw8 center mv3 ph3 sans-serif">
       <h1 className="pa2 bg-orange white">COVID-19 Data Explorer</h1>
-      <CountryList countries={countries} />
+      <CountryList
+        countries={countries}
+        setSelectedCountry={setSelectedCountry}
+      />
     </div>
   )
 }
