@@ -1,19 +1,16 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
-import lodash from 'lodash'
+
 import 'tachyons'
 import CountryList from './components/CountryList'
 import CountryData from './components/CountryData'
+import { getCountryList } from './api'
 
 function App() {
   const [countries, setCountries] = useState([])
   const [selectedCountry, setSelectedCountry] = useState(null)
 
   useEffect(() => {
-    axios.get('https://api.covid19api.com/countries').then((response) => {
-      const sortedCountries = lodash.sortBy(response.data, ['Country'])
-      setCountries(sortedCountries)
-    })
+    getCountryList().then((countries) => setCountries(countries))
   }, [])
 
   console.log('RENDERING:', countries)
