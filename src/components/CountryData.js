@@ -6,6 +6,7 @@ import StatBox from './StatBox'
 
 export default function CountryData({ country, handleGoBack }) {
   const [countryData, setCountryData] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     axios
@@ -27,6 +28,7 @@ export default function CountryData({ country, handleGoBack }) {
           return response
         })
         setCountryData(data)
+        setLoading(false)
       })
   }, [country])
 
@@ -51,7 +53,11 @@ export default function CountryData({ country, handleGoBack }) {
       </h2>
 
       {countryData.length === 0 ? (
-        <div>No data for this country.</div>
+        loading ? (
+          <div className="orange f2 lh-title">... Loading</div>
+        ) : (
+          <div>No data for this country.</div>
+        )
       ) : (
         <>
           <div className="flex mv4 justify-around">
