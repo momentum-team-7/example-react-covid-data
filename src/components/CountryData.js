@@ -76,8 +76,17 @@ export default function CountryData({ country, handleGoBack }) {
             theme={VictoryTheme.material}
             width={800}
             height={400}
+            padding={{ top: 20, left: 50, right: 50, bottom: 50 }}
           >
-            <VictoryLine x="date" y="new" data={countryData} />
+            <VictoryLine
+              x="date"
+              y="new"
+              data={countryData}
+              interpolation="natural"
+              style={{
+                data: { stroke: '#333666' },
+              }}
+            />
           </VictoryChart>
 
           <table className="w-100" cellSpacing="0">
